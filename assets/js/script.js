@@ -1,6 +1,34 @@
-var container = document.querySelector(".container");
+var container = document.querySelector('.container');
 
 var timerEl = document.getElementById('countdown');
+
+var questions = [
+    {
+        q: 'Commonly used data types DO Not Include:',
+        a: 'alerts',
+        choices: ['strings', 'blloeans', 'alerts', 'numbers']
+    },
+    {
+        q: 'The condition in an if/else statement is enclosed with _____.',
+        a: 'parenthesis',
+        choices: ['quotes', 'curly brackets', 'parenthesis', 'square brackets']
+    },
+    {
+        q: 'Arrays in JavaScript can be used to store _____.',
+        a: 'all of the above',
+        choices: ['numbers and strings', 'other arrays', 'booleans', 'all of the above']
+    },
+    {
+        q: 'String values must be enclosed within _____ when being assigned to variables.',
+        a: 'quotes',
+        choices: ['commas', 'curly brackets', 'quotes', 'parenthesis']
+    },
+    {
+        q: 'A very useful tool used during development and debugging for printing content to the debugger is:',
+        a: 'console.log',
+        choices: ['JavaScript', 'terminal/bash', 'for loops', 'console.log']
+    }
+];
 
 document.getElementById("quizStart").addEventListener("click", function(){
 // Timer that counts down from 75
