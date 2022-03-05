@@ -2,6 +2,8 @@ var container = document.querySelector('.container');
 var timerEl = document.getElementById('countdown');
 var startEl = document.getElementById('quizStart');
 var startScreenEl = document.getElementById("start-screen");
+var questionsEl = document.getElementById("questionList");
+var currentIndex = 0;
 
 var questions = [
     {
@@ -55,6 +57,16 @@ function quizTimer(){
         //start timer
         quizTimer();
         startScreenEl.setAttribute("class", "hide");
+        getQuestions();
     }
+
+    var getQuestions = function() {
+        //get questions from array
+        var newQuestion = questions[currentIndex];
+        questionsEl.removeAttribute("class");
+        //display question
+        var questionTitle = document.getElementById("questionHeader");
+        questionTitle.textContent = newQuestion.q;
+    };
 
     startEl.onclick = startQuiz;
