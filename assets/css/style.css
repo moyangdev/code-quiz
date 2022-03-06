@@ -34,3 +34,9 @@ button {
 .hide {
     display: none;
 }
+
+.choices {
+    font-size: 15px;
+    display: block;
+    margin: 15px;
+}
