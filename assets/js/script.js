@@ -13,6 +13,8 @@ var containerScoreEl = document.getElementById("score-banner");
 var formInitials = document.getElementById("initials-form");
 var quizDone;
 
+// create array to hold scores for saving
+var scores = [];
 
 //list of questions
 var questions = [
@@ -139,7 +141,7 @@ var answerWrong = function() {
     }
 }
 
-  //display score screen
+//display score screen
 var showScore = function () {
     containerScoreEl.removeAttribute("class");
     questionsEl.classList.add("hide");
@@ -150,7 +152,7 @@ var showScore = function () {
     containerScoreEl.appendChild(scoreDisplay);
 }       
 
-//create high score values
+//create high score
 var createHighScore = function(event) { 
     event.preventDefault() 
     var initials = document.querySelector("#initials").value;
@@ -158,7 +160,20 @@ var createHighScore = function(event) {
         alert("Enter your initials!");
         return;
     }
+
+    var scoreObj = {
+        initials: initials,
+        score: score
+        };
+    
+    scores.push(scoreObj);
+    saveHighScore();
 }
+
+//save high score to local storage 
+var saveHighScore = function() {
+    localStorage.setItem("scores", JSON.stringify(scores));
+    };
 
 startEl.onclick = startQuiz;
 formInitials.addEventListener("submit", createHighScore)
