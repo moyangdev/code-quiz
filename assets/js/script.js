@@ -40,7 +40,7 @@ var questions = [
 
 function quizTimer(){
     // Timer that counts down from 75
-    var timeLeft = 75;
+    timeLeft = 75;
     // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
@@ -57,7 +57,7 @@ function quizTimer(){
     }
     }, 1000);
 }
-    
+
 function startQuiz(){
         //start timer
         quizTimer();
@@ -97,7 +97,7 @@ var checkAnswer = function(event) {
         }
         else {
             answerWrong();
-            //timeLeft = timeLeft - 10;
+            timeLeft = timeLeft - 10;
         };
 
     questionIndex++;
