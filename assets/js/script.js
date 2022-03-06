@@ -8,8 +8,13 @@ var choices = document.getElementById("choices");
 var correctEl = document.getElementById("correct");
 var wrongEl = document.getElementById("wrong");
 var timeLeft;
+var score = 0;
+var containerScoreEl = document.getElementById("score-banner");
+var formInitials = document.getElementById("initials-form");
+var quizDone;
 
-//Array of questions
+
+//list of questions
 var questions = [
     {
         q: 'Commonly used data types DO Not Include:',
@@ -49,11 +54,15 @@ function quizTimer(){
         timerEl.textContent = 'Time: ' + timeLeft;
         // Decrement `timeLeft` by 1
         timeLeft--;
+    if (quizDone) {
+            clearInterval(timeInterval);
+    }
     } else {
         // Once `timeLeft` gets to 0, set `timerEl` to Time is up
         timerEl.textContent = 'Time is up!';
         // Use `clearInterval()` to stop the timer
         clearInterval(timeInterval);
+        showScore();
     }
     }, 1000);
 }
@@ -94,6 +103,7 @@ var checkAnswer = function(event) {
     var selectedanswer = event.target
         if (questions[questionIndex].a === selectedanswer.innerText){
             answerCorrect();
+            score = score + 20;
         }
         else {
             answerWrong();
@@ -102,14 +112,15 @@ var checkAnswer = function(event) {
 
     questionIndex++;
         if (questionIndex === questions.length) {
-            alert("Quiz complete!");
+        quizDone = "true";
+        showScore();
         } 
         else {
         getQuestions();
     }    
 }
 
-//display correct! on screen
+//display correct answer
 var answerCorrect = function() {
     if (correctEl.className = "hide") {
         correctEl.classList.remove("hide")
@@ -118,7 +129,7 @@ var answerCorrect = function() {
         wrongEl.classList.add("hide")
         }
     }  
-//display wrong! on screen
+//display wrong answer 
 var answerWrong = function() {
     if (wrongEl.className = "hide") {
         wrongEl.classList.remove("hide")
@@ -128,4 +139,26 @@ var answerWrong = function() {
     }
 }
 
+  //display score screen
+var showScore = function () {
+    containerScoreEl.removeAttribute("class");
+    questionsEl.classList.add("hide");
+    formInitials.removeAttribute("class");
+
+    var scoreDisplay = document.createElement("p");
+    scoreDisplay.innerText = ("Your final score is " + score + ".");
+    containerScoreEl.appendChild(scoreDisplay);
+}       
+
+//create high score values
+var createHighScore = function(event) { 
+    event.preventDefault() 
+    var initials = document.querySelector("#initials").value;
+    if (!initials) {
+        alert("Enter your initials!");
+        return;
+    }
+}
+
 startEl.onclick = startQuiz;
+formInitials.addEventListener("submit", createHighScore)

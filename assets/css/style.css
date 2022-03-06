@@ -36,6 +36,12 @@ button {
     border-radius: 12px;
 }
 
+button:hover {
+    background: #BD60E7;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 .hide {
     display: none;
 }
@@ -58,4 +64,12 @@ button {
     width: 50%;
     margin-top: 50px;
     border-top: 2px solid rgba(199, 187, 187, 0.8);
+}
+
+#score-banner {
+    text-align: center; 
+}
+
+#initials-form {
+    text-align: center; 
 }
