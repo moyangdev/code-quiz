@@ -3,14 +3,18 @@ var timerEl = document.getElementById('countdown');
 var startEl = document.getElementById('quizStart');
 var startScreenEl = document.getElementById("start-screen");
 var questionsEl = document.getElementById("questionList");
-var currentIndex = 0;
+var questionIndex = 0;
 var choices = document.getElementById("choices");
+var correctEl = document.getElementById("correct");
+var wrongEl = document.getElementById("wrong");
+var timeLeft;
 
+//Array of questions
 var questions = [
     {
         q: 'Commonly used data types DO Not Include:',
         a: 'alerts',
-        c: ['strings', 'blloeans', 'alerts', 'numbers']
+        c: ['strings', 'booleans', 'alerts', 'numbers']
     },
     {
         q: 'The condition in an if/else statement is enclosed with _____.',
@@ -63,20 +67,65 @@ function startQuiz(){
 
 function getQuestions() {
         //get questions from array
-        var newQuestion = questions[currentIndex];
+        var newQuestion = questions[questionIndex];
         questionsEl.removeAttribute("class");
+
         //display question
         var questionTitle = document.getElementById("questionHeader");
         questionTitle.textContent = newQuestion.q;
+        
+        //clear previous choices
+        choices.innerHTML = "";
     
-    //display choices and buttons
-    newQuestion.c.forEach(function(choice, i) {
-    var choiceBtns = document.createElement("button");
-    choiceBtns.setAttribute("class", "btn");
-    choiceBtns.setAttribute("value", choice);
-    choiceBtns.textContent = choice;
-    choices.appendChild(choiceBtns);
-    });
+        //display choices and buttons
+        newQuestion.c.forEach(function(choice, i) {
+        var choiceBtns = document.createElement("button");
+        choiceBtns.setAttribute("class", "btn");
+        choiceBtns.setAttribute("value", choice);
+        choiceBtns.textContent = choice;
+        choices.appendChild(choiceBtns);
+        //run checkAnswer function when choice button is clicked
+        choiceBtns.addEventListener("click", checkAnswer);
+        });
 }
 
-    startEl.onclick = startQuiz;
+//check if answer is correct    
+var checkAnswer = function(event) {
+    var selectedanswer = event.target
+        if (questions[questionIndex].a === selectedanswer.innerText){
+            answerCorrect();
+        }
+        else {
+            answerWrong();
+            //timeLeft = timeLeft - 10;
+        };
+
+    questionIndex++;
+        if (questionIndex === questions.length) {
+            alert("Quiz complete!");
+        } 
+        else {
+        getQuestions();
+    }    
+}
+
+//display correct! on screen
+var answerCorrect = function() {
+    if (correctEl.className = "hide") {
+        correctEl.classList.remove("hide")
+        correctEl.classList.add("banner")
+        wrongEl.classList.remove("banner")
+        wrongEl.classList.add("hide")
+        }
+    }  
+//display wrong! on screen
+var answerWrong = function() {
+    if (wrongEl.className = "hide") {
+        wrongEl.classList.remove("hide")
+        wrongEl.classList.add("banner")
+        correctEl.classList.remove("banner")
+        correctEl.classList.add("hide")
+    }
+}
+
+startEl.onclick = startQuiz;

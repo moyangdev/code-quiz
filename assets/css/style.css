@@ -1,10 +1,14 @@
 body {
-    margin: 0;
-    padding: 0;
     display: flex;
-    min-height: 90vh;
     flex-direction: column;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 90%;
 }
 
 .container {
@@ -19,11 +23,12 @@ h2 {
     width: 50%;
     margin: auto;
     text-align: center;
+    padding: 30px;
 }
 
 button {
     padding: 10px;
-    margin: 20px;
+    margin: 10px;
     cursor: pointer;
     font-size: 24px;
     background-color:#351C75;
@@ -37,6 +42,20 @@ button {
 
 .choices {
     font-size: 15px;
-    display: block;
     margin: 15px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin:auto;
+}
+
+.banner {
+    font-size: 20px;
+    text-align: center;
+    color: rgba(199, 187, 187, 0.8);
+    font-style: italic;
+    margin: auto;
+    width: 50%;
+    margin-top: 50px;
+    border-top: 2px solid rgba(199, 187, 187, 0.8);
 }
