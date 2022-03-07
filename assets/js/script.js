@@ -215,8 +215,8 @@ savedScores = JSON.parse(savedScores);
 // loop through savedScores array
 for (var i = 0; i < savedScores.length; i++) {
     // pass each task object into the `createTaskEl()` function
-    //createHighScore(savedScores[i]);
-
+    
+    //create score in a list format 
     var highscoreEl = document.createElement("li");
     highscoreEl.ClassName = "high-score";
     highscoreEl.innerText = savedScores[i].initials + " - " + savedScores[i].score;
@@ -226,6 +226,7 @@ for (var i = 0; i < savedScores.length; i++) {
 }
 };
 
+//display scores while hiding other elements
 var displayHighScores = function() { 
     startScreenEl.classList.add("hide");
     questionsEl.classList.add("hide");
@@ -243,9 +244,11 @@ while (listHighScoreEl.firstChild) {
     listHighScoreEl.removeChild(listHighScoreEl.firstChild);
 }
 
+//clears local storage
 localStorage.clear(scores);
 } 
 
+//reset main screen when go back button is clicked
 function resetScreen(){ 
     containerScoreEl.classList.add("hide");
     containerHighScoresEl.classList.add("hide");
@@ -260,7 +263,10 @@ startEl.onclick = startQuiz;
 formInitials.addEventListener("submit", createHighScore);
 //when view high scores is clicked
 viewHighScoreEl.addEventListener("click", displayHighScores);
+//when go back button is clicked
 btnGoBackEl.addEventListener("click", resetScreen);
+//when clear high scores button is clicked
 btnClearScoresEl.addEventListener("click", clearScores);
 
+//load scores from local memory
 retrieveScores();
