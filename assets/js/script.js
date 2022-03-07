@@ -200,6 +200,32 @@ var saveHighScore = function() {
     localStorage.setItem("scores", JSON.stringify(scores));
     };
 
+
+var retrieveScores = function() {
+var savedScores = localStorage.getItem("scores");    
+// if there are no tasks, set scores to an empty array and return out of the function
+if (!savedScores) {
+    return false;
+}
+console.log("Saved scores found!");
+
+// parse into array of objects
+savedScores = JSON.parse(savedScores);
+
+// loop through savedScores array
+for (var i = 0; i < savedScores.length; i++) {
+    // pass each task object into the `createTaskEl()` function
+    //createHighScore(savedScores[i]);
+
+    var highscoreEl = document.createElement("li");
+    highscoreEl.ClassName = "high-score";
+    highscoreEl.innerText = savedScores[i].initials + " - " + savedScores[i].score;
+    listHighScoreEl.appendChild(highscoreEl);
+
+    scores.push(savedScores[i]);
+}
+};
+
 var displayHighScores = function() { 
     startScreenEl.classList.add("hide");
     questionsEl.classList.add("hide");
@@ -223,6 +249,7 @@ localStorage.clear(scores);
 function resetScreen(){ 
     containerScoreEl.classList.add("hide");
     containerHighScoresEl.classList.add("hide");
+    formInitials.classList.add("hide");
     questionIndex = 0;
     getQuestions();
 }
@@ -235,3 +262,5 @@ formInitials.addEventListener("submit", createHighScore);
 viewHighScoreEl.addEventListener("click", displayHighScores);
 btnGoBackEl.addEventListener("click", resetScreen);
 btnClearScoresEl.addEventListener("click", clearScores);
+
+retrieveScores();
