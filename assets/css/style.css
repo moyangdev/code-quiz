@@ -1,3 +1,7 @@
+* {
+    align-items: center;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -64,14 +68,6 @@ button:hover {
     width: 50%;
     margin-top: 50px;
     border-top: 2px solid rgba(199, 187, 187, 0.8);
-}
-
-#score-banner {
-    text-align: center; 
-}
-
-#initials-form {
-    text-align: center; 
 }
 
 #view-high-scores {

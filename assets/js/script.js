@@ -188,6 +188,11 @@ var createHighScore = function(event) {
         }
 
     saveHighScore();
+
+    containerScoreEl.classList.add("hide");
+    formInitials.classList.add("hide");
+
+    displayHighScores();
 }
 
 //save high score to local storage 
@@ -201,7 +206,7 @@ var displayHighScores = function() {
     btnGoBackEl.removeAttribute("class");
     btnClearScoresEl.removeAttribute("class");
     containerHighScoresEl.removeAttribute("class");
-    endQuiz = "true";
+    //endQuiz = "true";
 }
 
 //clears scores
@@ -215,18 +220,18 @@ while (listHighScoreEl.firstChild) {
 localStorage.clear(scores);
 } 
 
-// function resetScrren(){ 
-//     containerScoreEl.classList.add("hide");
-//     questionIndex = 0;
-//     startQuiz();
-// }
+function resetScreen(){ 
+    containerScoreEl.classList.add("hide");
+    containerHighScoresEl.classList.add("hide");
+    questionIndex = 0;
+    getQuestions();
+}
 
 //on click, start quiz
 startEl.onclick = startQuiz;
-
 //on submit, save score
 formInitials.addEventListener("submit", createHighScore);
 //when view high scores is clicked
 viewHighScoreEl.addEventListener("click", displayHighScores);
-btnGoBackEl.addEventListener("click", startQuiz);
+btnGoBackEl.addEventListener("click", resetScreen);
 btnClearScoresEl.addEventListener("click", clearScores);
