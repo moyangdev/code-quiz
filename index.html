@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <h3><a href=#>View High Scores</a></h3>
+        <h3 id="view-high-scores">View High Scores</h3>
         <h3 id="countdown">Time: </h3>
     </header>
     <div class="container" id="start-screen">
@@ -32,11 +32,18 @@
     <div class="hide" id="score-banner">
         <h1>All done!</h1>
     </div>  
-    <form id="initials-form" class="hide">
+    <form class="hide" id="initials-form">
         <p> Enter Initials:
         <input type="text" name="initials" id="initials" class="text-input" />
         <button class="" id="sumbit-score" type="submit">Submit</button> </p>
     </form>
+    <div class="hide" id="high-score-container">
+        <h1 class="high-score"></h1>
+        <ol class="score-list" id="high-score-list"></ol>
+    <div>
+    <div>
+    <button class="hide" id="go-back">Go back</button>
+    </div>
 </body>
     <script src="./assets/js/script.js"></script>
 </html>

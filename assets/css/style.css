@@ -73,3 +73,8 @@ button:hover {
 #initials-form {
     text-align: center; 
 }
+
+#view-high-scores {
+    cursor: pointer;
+    color: #BD60E7;
+}
