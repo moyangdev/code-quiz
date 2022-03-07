@@ -17,10 +17,11 @@ var containerScoreEl = document.getElementById("score-banner");
 
 //high score related
 var formInitials = document.getElementById("initials-form");
-var btnGoBackEl = document.querySelector("#go-back");
-var containerHighScoresEl = document.getElementById("high-score-container")
+var containerHighScoresEl = document.getElementById("high-score-container");
 var viewHighScoreEl = document.getElementById("view-high-scores");
-var listHighScoreEl = document.getElementById("high-score-list")
+var listHighScoreEl = document.getElementById("high-score-list");
+var btnGoBackEl = document.querySelector("#go-back");
+var btnClearScoresEl = document.querySelector("#clear-scores");
 
 // create array to hold scores for saving
 var scores = [];
@@ -84,6 +85,7 @@ function startQuiz(){
         startScreenEl.setAttribute("class", "hide");
         getQuestions();
         btnGoBackEl.classList.add("hide");
+        btnClearScoresEl.classList.add("hide");
 }
 
 function getQuestions() {
@@ -197,9 +199,21 @@ var displayHighScores = function() {
     startScreenEl.classList.add("hide");
     questionsEl.classList.add("hide");
     btnGoBackEl.removeAttribute("class");
+    btnClearScoresEl.removeAttribute("class");
     containerHighScoresEl.removeAttribute("class");
     endQuiz = "true";
 }
+
+//clears scores
+var clearScores = function () {
+scores = [];
+
+while (listHighScoreEl.firstChild) {
+    listHighScoreEl.removeChild(listHighScoreEl.firstChild);
+}
+
+localStorage.clear(scores);
+} 
 
 // function resetScrren(){ 
 //     containerScoreEl.classList.add("hide");
@@ -215,3 +229,4 @@ formInitials.addEventListener("submit", createHighScore);
 //when view high scores is clicked
 viewHighScoreEl.addEventListener("click", displayHighScores);
 btnGoBackEl.addEventListener("click", startQuiz);
+btnClearScoresEl.addEventListener("click", clearScores);
